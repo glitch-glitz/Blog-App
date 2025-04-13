@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from "react"; //
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
@@ -26,7 +26,7 @@ const blogTwo = {
 
 //array iterating methods
 //map, reduce, find,foEach, filter
-const blogs = [
+const data = [
   {
     image:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxq2rx8L2_5PTUI7aA57jJ8z_NPecD2tmNWg&s",
@@ -61,10 +61,24 @@ const blogs = [
   },
 ];
 function App() {
+  // React State-> is dynamic data in a component
+  const [count, setCount] = useState(0);
+  const [blogs, setBlogs] = useState(data);
+  console.log(blogs);
   return (
     <>
       <main className="min-h-screen flex p-32px gap-3 bg-gray-200 font-poppins">
         <div className="w-[70%] space-y-3">
+          <button
+            className="border bg-amber-300 p-3"
+            onClick={() => {
+              console.log("Button clicked");
+              setCount(count + 1);
+            }}
+          >
+            Count {count}
+          </button>
+
           <h1 className="font-semibold text-2xl ">Latest Blogs</h1>
           <SearchBar />
           <FeaturedBlogCard
