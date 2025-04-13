@@ -1,4 +1,4 @@
-import { useState } from "react"; //
+import { useEffect, useState } from "react"; //
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
@@ -65,6 +65,23 @@ function App() {
   const [count, setCount] = useState(0);
   const [blogs, setBlogs] = useState(data);
   console.log(blogs);
+  //Update funtions---state
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("");
+  const [image, setImage] = useState("");
+
+  {
+    /**
+    useEffect(() => {
+    fetch('http:localhost:300/blogs')
+      .then((res) => res.json())
+      .then(data)=> {
+      setBlogs(data)
+    }
+  })
+    */
+  }
   return (
     <>
       <main className="min-h-screen flex p-32px gap-3 bg-gray-200 font-poppins">
@@ -117,7 +134,73 @@ function App() {
             })} */}
           </div>
         </div>
-        <div className="flex-1 ">News</div>
+        <div className="flex-1 ">
+          News
+          <form
+            action=""
+            className="border p-2 rounded-xl w-full space y-3"
+            onSubmit={(e) => {
+              e.preventDefault();
+              console.log({ title, image, description, category });
+              setBlogs([
+                ...blogs,
+                ...[{ title, image, description, category }],
+              ]);
+            }}
+          >
+            <div>
+              <label htmlFor="">Title</label>
+              <input
+                type="text"
+                placeholder="title"
+                className="p-2 bg-white boarder w-full rounded-lg"
+                onChange={(e) => {
+                  setTitle(e.target.value);
+
+                  //console.log(e.target.value);
+                }}
+              />
+            </div>
+            <div>
+              <label htmlFor="">Description</label>
+              <textarea
+                name=""
+                id=""
+                placeholder="description"
+                className="p-2 bg-white boarder w-full rounded-lg"
+                onChange={(e) => {
+                  setDescription(e.target.value);
+                }}
+              ></textarea>
+            </div>
+            <div>
+              <label htmlFor="">Category</label>
+              <input
+                type="text"
+                placeholder="Category"
+                className="p-2 bg-white boarder w-full rounded-lg"
+                onChange={(e) => {
+                  setCategory(e.target.value);
+                }}
+              />
+            </div>
+            <div>
+              <label htmlFor="image">Image</label>
+              <input
+                id="image"
+                type="text"
+                placeholder="image"
+                className="p-2 bg-white boarder w-full rounded-lg"
+                onChange={(e) => {
+                  setImage(e.target.value);
+                }}
+              />
+            </div>
+            <button className="w-full p-2 bg-amber-300 rounded-full">
+              Save
+            </button>
+          </form>
+        </div>
       </main>
     </> // called react fragments. used to group components
   );
